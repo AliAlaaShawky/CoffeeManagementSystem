@@ -1,0 +1,52 @@
+{%extends 'base.html'%}
+{%block title%}All Orders {%endblock%}
+{% block content%}
+    <div class="my-content container p-5 my-5 rounded border border-warning">
+        <h2 class="text-center">All Orders</h2>
+        {%include 'part/alert.html'%}
+        {%if request.user.is_authenticated%}
+        {%if all_orders%}
+            {%if all_orders.count > 0%}
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        
+                        <th scope="col">Order Number</th>
+                        <th scope="col">Date & Time</th>
+                        <th scope="col">Items count</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Is Finished</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {%for order in all_orders%}
+                    <tr>
+                    
+                        <td>{{order.id}}</td>
+                        <td>{{order.order_date}}</td>
+                        <td>{{order.items.count}}</td>
+                        <td>{{order.total}}</td>
+                        {%if order.is_finished == True %}
+                        <td>Yes</td>
+                        {%else%}
+                        <td>No</td>
+                        {%endif%}
+                    </tr>
+                    {%empty%}
+                    <h5 class="alert alert-warning">no details here</h5>
+                    {%endfor%}
+                    </tbody>
+                </table>
+
+
+                
+        {%else%}
+            <h3 class="alert alert-danger">you should add <a href="{%url 'products'%}" class="text-dark">products </a>to your cart frist   </h3>
+        {%endif%}
+        {%else%}
+        <h3 class="alert alert-danger">you should log in frist  <a href="{%url 'signin'%}" class="text-dark">log in</a> </h3>
+        {%endif%}
+    {%endif%}
+  </div>   
+{%endblock%}

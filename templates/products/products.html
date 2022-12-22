@@ -1,0 +1,40 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block title%}all products {%endblock%}
+{% block content%}
+<div class="my-form container p-5 my-5 rounded border border-warning">
+  <h2 class="text-center">All Products</h2> 
+  {%include 'part/alert.html'%}
+ 
+  {%if request.user.is_authenticated %} 
+  <form>
+      
+        <section>
+            <div class="container-fluid">
+              <div class="row p-5" >
+    
+                {%for d in x%}
+<div>
+  <div class="card m-2" style="width: 18rem;">
+    <img  src="{{d.photo.url}}" class="card-img-top" alt="{{d.name}}">
+    <div class="card-body">
+      <h5 class="card-title">{{d.name}}</h5>
+      <p class="card-text text-truncate">{{d.describtion}}</p>
+      <a href="{%url 'product' pro_id=d.id%}" class="btn btn-warning">Show Details</a>
+    </div>
+  </div>
+</div>
+{%endfor%}
+    
+              </div>
+            </div>
+        </section>
+    
+
+    </form>
+    {%else%}
+    <h3 class="alert alert-danger">you should log in frist  <a href="{%url 'signin'%}" class="text-dark">log in</a> </h3>
+  {%endif%}
+
+</div>
+{% endblock%}
