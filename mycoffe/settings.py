@@ -83,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'mycoffedb',
         'USER':'postgres',
-        "PASSWORD":'alialaa456',
+        "PASSWORD":'$$$$$$$$',
         'HOST':'localhost',
         'PORT':'5432'
 
